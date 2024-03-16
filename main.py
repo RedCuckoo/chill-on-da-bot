@@ -1,101 +1,29 @@
-import telebot
 from logging import getLogger
+
+import os
+import telebot
+
+from car_brands import CarBrands
 
 logger = getLogger(__name__)
 
-bot = telebot.TeleBot("")
+telegram_token = os.environ.get("TELEGRAM_TOKEN")
 
+if telegram_token is None:
+    raise ValueError("Telegram token not found in environment variable TELEGRAM_TOKEN")
+
+bot = telebot.TeleBot(telegram_token)
+
+car_brands_instance = CarBrands()
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
     bot.send_message(message.chat.id, "Дарова синки")
 
 
-def get_car_brands():
-    return [
-        "Abarth",
-        "Alfa Romeo",
-        "Aston Martin",
-        "Audi",
-        "Bentley",
-        "BMW",
-        "Bugatti",
-        "Cadillac",
-        "Chevrolet",
-        "Chrysler",
-        "Citroën",
-        "Dacia",
-        "Daewoo",
-        "Daihatsu",
-        "Dodge",
-        "Donkervoort",
-        "DS",
-        "Ferrari",
-        "Fiat",
-        "Fisker",
-        "Ford",
-        "Honda",
-        "Hummer",
-        "Hyundai",
-        "Infiniti",
-        "Iveco",
-        "Jaguar",
-        "Jeep",
-        "Kia",
-        "KTM",
-        "Lada",
-        "Lamborghini",
-        "Lancia",
-        "Land Rover",
-        "Landwind",
-        "Lexus",
-        "Lotus",
-        "Maserati",
-        "Maybach",
-        "Mazda",
-        "McLaren",
-        "Mercedes-Benz",
-        "MG",
-        "Mini",
-        "Mitsubishi",
-        "Morgan",
-        "Nissan",
-        "Opel",
-        "Peugeot",
-        "Porsche",
-        "Renault",
-        "Rolls-Royce",
-        "Rover",
-        "Saab",
-        "Seat",
-        "Smart",
-        "SsangYong",
-        "Subaru",
-        "Suzuki",
-        "Tesla",
-        "Toyota",
-        "Volvo",
-        "жигулі",
-        "жига",
-        "копійка",
-        "копейка",
-        "бмв",
-        "тойота",
-        "рено",
-        "мено",
-        "реган",
-        "мерс",
-        "беха",
-        "порш",
-        "мазда",
-        "ауді",
-        "бумер",
-    ]
-
-
 @bot.message_handler(content_types=['text'])
 def handle_message(message):
-    for brand in get_car_brands():
+    for brand in car_brands_instance.get_car_brands():
         if brand.lower() in message.text.lower():
             bot.send_message(message.chat.id, "Знаєш шо хочеться спитать? Чого не шкода?")
             return
