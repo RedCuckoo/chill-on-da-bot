@@ -3,7 +3,7 @@ import time
 
 
 class CarBrands:
-    def __init__(self, file_path="car_brands.txt"):
+    def __init__(self, file_path="src/car_brands.txt"):
         self.file_path = file_path
         self.car_brands = []
         self.load_car_brands()
