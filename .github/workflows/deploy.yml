@@ -10,6 +10,7 @@ jobs:
 
     env:
       REGISTRY_URL: ${{ vars.REGISTRY_URL }}
+      REGISTRY_PROJECT: ${{ vars.REGISTRY_PROJECT }}
       REGISTRY_USERNAME: ${{ vars.REGISTRY_USERNAME }}
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
       TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
@@ -41,9 +42,9 @@ jobs:
           username: ${{ vars.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: true
-          envs: TELEGRAM_TOKEN
+          envs: TELEGRAM_TOKEN, REGISTRY_URL, REGISTRY_PROJECT
           script: |            
-             TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }} docker stack deploy --with-registry-auth \
+             docker stack deploy --with-registry-auth \
               -c docker-compose.yml \
               -c docker-compose.yml \
               chill-on-da
