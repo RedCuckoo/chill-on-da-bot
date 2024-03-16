@@ -10,7 +10,6 @@ jobs:
 
     env:
       REGISTRY_URL: ${{ vars.REGISTRY_URL }}
-      REGISTRY_PROJECT: ${{ vars.REGISTRY_PROJECT }}
       REGISTRY_USERNAME: ${{ vars.REGISTRY_USERNAME }}
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
       TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
@@ -21,7 +20,7 @@ jobs:
           echo REGISTRY_PASSWORD | docker login '${{ vars.REGISTRY_URL }}' -u '${{ vars.REGISTRY_USERNAME }}' --password-stdin
       - name: Deploy stack to Docker Swarm
         run: |            
-          $(SOURCE_ENVS) docker stack deploy --with-registry-auth \
+          $(TELEGRAM_TOKEN) docker stack deploy --with-registry-auth \
             -c docker-compose.yml \
             -c docker-compose.yml \
             chill-on-da

@@ -12,7 +12,7 @@ jobs:
       REGISTRY_PROJECT: ${{ vars.REGISTRY_PROJECT }}
       REGISTRY_USERNAME: ${{ vars.REGISTRY_USERNAME }}
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-      IMAGE_NAME: ${{ vars.REGISTRY_URL }}/${{ vars.REGISTRY_PROJECT }}/${{ github.event.repository.name }}
+      IMAGE_NAME: ${{ vars.REGISTRY_URL }}/${{ vars.REGISTRY_PROJECT }}/chill-on-da
       TAG_BRANCH: "latest"
     steps:
       - name: Checkout repository
