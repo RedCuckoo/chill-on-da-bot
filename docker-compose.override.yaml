@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  chill-on-da:
+    image: "chill-on-da"
+    build: .
+    environment:
+      TELEGRAM_TOKEN: TELEGRAM_TOKEN
+    restart: "on-failure"

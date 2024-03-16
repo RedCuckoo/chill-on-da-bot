@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  chill-on-da:
+    image: ${REGISTRY_URL}/${REGISTRY_PROJECT}/chill-on-da:latest
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
