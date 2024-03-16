@@ -54,8 +54,6 @@ jobs:
           IMAGE_TAG_BUILD=$IMAGE_NAME:${{ github.sha }}
           
           docker load --input /tmp/images/output.tar
-          docker push $IMAGE_TAG_BUILD
-          echo "Pushed image with tag $IMAGE_TAG_BUILD"
 
           IMAGE_TAG=$IMAGE_NAME:latest
           docker tag $IMAGE_TAG_BUILD $IMAGE_TAG
