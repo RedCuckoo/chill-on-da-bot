@@ -1,9 +1,10 @@
-name: Build and Publish Dev
+name: Build and Publish
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   test:
