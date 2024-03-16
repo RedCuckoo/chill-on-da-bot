@@ -18,9 +18,13 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
     steps:
       - uses: actions/checkout@v3
-      - name: Login to registry
-        run: |        
-          echo REGISTRY_PASSWORD | docker login '${{ vars.REGISTRY_URL }}' -u '${{ vars.REGISTRY_USERNAME }}' --password-stdin
+      - name: Log into registry ${{ env.REGISTRY_URL }}
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2.1.0
+        with:
+          registry: ${{ env.REGISTRY_URL }}
+          username: ${{ env.REGISTRY_USERNAME }}
+          password: ${{ env.REGISTRY_PASSWORD }}
       - name: Copy files to host
         uses: appleboy/scp-action@v0.1.3
         with:
