@@ -12,10 +12,10 @@ jobs:
 
   docker-build:
     needs: test
-    uses: ./.github/workflows/docker-build.yml
+    uses: ./.github/workflows/docker_build.yml
     secrets: inherit
 
   deploy:
-    needs: test, docker-build
+    needs: [test, docker-build]
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
