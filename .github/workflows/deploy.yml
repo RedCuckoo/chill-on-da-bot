@@ -32,7 +32,7 @@ jobs:
           username: ${{ vars.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./docker-compose.yml"
-          target: "./docker-compose.yml"
+          target: "./"
 
       - name: Deploy stack to Docker Swarm
         uses: appleboy/ssh-action@v0.1.7
