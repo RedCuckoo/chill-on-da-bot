@@ -40,8 +40,10 @@ jobs:
           host: ${{ vars.SSH_HOST }}
           username: ${{ vars.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |            
-           TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }} docker stack deploy --with-registry-auth \
-            -c docker-compose.yml \
-            -c docker-compose.yml \
-            chill-on-da
+          script_stop: true
+          envs: TELEGRAM_TOKEN
+          script: |            
+             TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }} docker stack deploy --with-registry-auth \
+              -c docker-compose.yml \
+              -c docker-compose.yml \
+              chill-on-da
