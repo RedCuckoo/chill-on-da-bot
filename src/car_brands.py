@@ -17,11 +17,11 @@ class CarBrands:
         while True:
             self.load_car_brands()
             print("Updated car brands:", self.car_brands)
-            time.sleep(120)  # Update every 2 minutes
+            time.sleep(120)
 
     def start_update_thread(self):
         update_thread = threading.Thread(target=self.update_car_brands)
-        update_thread.daemon = True  # Daemonize the thread so it exits when the main thread exits
+        update_thread.daemon = True
         update_thread.start()
 
     def get_car_brands(self):
