@@ -1,1 +1,21 @@
+name: Build and Publish Dev
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+
+  docker-build:
+    needs: test
+    uses: ./.github/workflows/docker-build.yml
+    secrets: inherit
+
+  deploy:
+    needs: test, docker-build
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
