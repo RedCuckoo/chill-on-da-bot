@@ -1,0 +1,12 @@
+name: Build and Publish Dev
+
+on:
+  push:
+    branches-ignore:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
