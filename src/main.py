@@ -43,6 +43,8 @@ def handle_message(message):
         if "яка сама піздата тачка" in message.text.lower():
             bot.send_message(message.chat.id, "канєшно шкода")
             return
+        if "міч" in message.text.lower():
+            bot.send_message(message.chat.id, "міч міч міч @promoangel")
 
 
 if __name__ == "__main__":
